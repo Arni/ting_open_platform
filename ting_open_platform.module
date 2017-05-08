@@ -64,6 +64,23 @@ function ting_open_platform_search_collection($query) {
   return ting_open_platform_request('search', $parameters);
 }
 
+function ting_open_platform_search_series($query, $offset = 0) {
+  $parameters = array(
+    "fields" => array(
+      "title",
+      "collection",
+      "creator",
+      "pid",
+      "titleSeries",
+    ),
+    "pretty" => true,
+    "q" => $query,
+    "offset" => $offset,
+    "limit" => 20,
+  );
+  return ting_open_platform_request('search', $parameters);
+}
+
 function ting_open_platform_recommender($ids, $number_of_objects = 20) {
   $parameters = array(
     "fields" => array(
@@ -95,8 +112,8 @@ function ting_open_platform_render_cover($data) {
 
 
 function ting_open_platform_get_token() {
-  $key = "1ba2428f-1fc3-4159-82ff-869b87026bcd";
-  $secret = "3ab379e23032f8e94599ba2a75be13a4d49e846342d101a6899b27b823abff1e";
+  $key = "1ba2428f-1fc3-4159-82ff-869b87026bcd"; 
+  $secret = variable_get('ting_open_platform_secret', '');
 
 // request token
   $basic_credentials = base64_encode($key.':'.$secret);
@@ -110,8 +127,8 @@ function ting_open_platform_get_token() {
 }
 
 function ting_open_platform_request($operation, $parameters) {
-  $token = variable_get('ting_open_platform_token', '8fcb2229d117ac2912fec4d272df3986cb415140');
-  $parameters['access_token'] = '6c29a4e96187cd8951e85202f05a01f09eaf65ee';
+  $token = variable_get('ting_open_platform_token', 'ab32da0a2e25d8b720e6af316578ea8e9fa120a8');
+  $parameters['access_token'] = 'ab32da0a2e25d8b720e6af316578ea8e9fa120a8';
   $service_url = 'https://openplatform.dbc.dk/v1/' . $operation;
   
   $curl = curl_init($service_url);

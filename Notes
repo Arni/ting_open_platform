@@ -43,3 +43,4 @@ function ting_open_platform_menu() {
       "pid"
     ),
 
+$secret = "3ab379e23032f8e94599ba2a75be13a4d49e846342d101a6899b27b823abff1e";
